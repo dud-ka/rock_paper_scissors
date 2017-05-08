@@ -63,3 +63,9 @@ function newGame() {
     // setGamePoints(); // ta funkcja jeszcze nie powstała
   }
 };
+
+//choice made by player
+function playerPick(playerPick) {
+    console.log(playerPick);
+};
+//end choice made by player
