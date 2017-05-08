@@ -22,6 +22,7 @@ var gameState = 'notStarted',  //started // ended
         score: 0
     };
 
+//game elements
 var newGameElem = document.getElementById('js-newGameElement'),
     pickElem = document.getElementById('js-playerPickElement'),
     resultsElem = document.getElementById('js-resultsTableElement');
@@ -44,3 +45,21 @@ function setGameElements() {
 };
 
 setGameElements();
+//end game elements
+
+//start game
+var playerPointsElem = document.getElementById('js-playerPoints'),
+    playerNameElem = document.getElementById('js-playerName'),
+    computerPointsElem = document.getElementById('js-computerPoints');
+
+function newGame() {
+  player.name = prompt('Graczu, wpisz swoje imię', 'imię gracza');
+  if (player.name) {
+    player.score = computer.score = 0;
+    gameState = 'started';
+    setGameElements();
+
+    playerNameElem.innerHTML = player.name;
+    // setGamePoints(); // ta funkcja jeszcze nie powstała
+  }
+};
