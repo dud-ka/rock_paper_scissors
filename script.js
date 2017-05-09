@@ -60,7 +60,7 @@ function newGame() {
     setGameElements();
 
     playerNameElem.innerHTML = player.name;
-    // setGamePoints(); // ta funkcja jeszcze nie powstała
+     setGamePoints();
   }
 };
 
@@ -110,6 +110,12 @@ function checkRoundWinner(playerPick, computerPick) {
         computerResultElem.innerHTML = "Wygrana!";
         computer.score++;
     }
-
 };
 //end who is a winner
+
+//update score
+function setGamePoints() {
+    playerPointsElem.innerHTML = player.score;
+    computerPointsElem.innerHTML = computer.score;
+};
+//end update score
