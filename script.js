@@ -70,6 +70,8 @@ function playerPick(playerPick) {
     
     playerPickElem.innerHTML = playerPick;
     computerPickElem.innerHTML = computerPick;
+
+    checkRoundWinner(playerPick, computerPick);
 };
 //end choice made by player
 
@@ -85,3 +87,29 @@ var playerPickElem = document.getElementById('js-playerPick'),
     playerResultElem = document.getElementById('js-playerResult'),
     computerResultElem = document.getElementById('js-computerResult');
 
+//who is a winner?
+function checkRoundWinner(playerPick, computerPick) {
+  playerResultElem.innerHTML = computerResultElem.innerHTML = '';
+
+  var winnerIs = 'player';
+
+    if (playerPick == computerPick) {
+        winnerIs = 'noone'; // remis
+    } else if (
+        (computerPick == 'rock' &&  playerPick == 'scissors') ||
+        (computerPick == 'scissors' &&  playerPick == 'paper') ||
+        (computerPick == 'paper' &&  playerPick == 'rock')) {
+        
+        winnerIs = 'computer';
+    }
+
+    if (winnerIs == 'player') {
+        playerResultElem.innerHTML = "Wygrana!";
+        player.score++;
+    } else if (winnerIs == 'computer') {
+        computerResultElem.innerHTML = "Wygrana!";
+        computer.score++;
+    }
+
+};
+//end who is a winner
