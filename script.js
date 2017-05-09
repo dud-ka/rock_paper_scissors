@@ -66,6 +66,22 @@ function newGame() {
 
 //choice made by player
 function playerPick(playerPick) {
-    console.log(playerPick);
+    var computerPick = getComputerPick();
+    
+    playerPickElem.innerHTML = playerPick;
+    computerPickElem.innerHTML = computerPick;
 };
 //end choice made by player
+
+//computer random
+function getComputerPick() {
+    var possiblePicks = ['rock', 'paper', 'scissors'];
+    return possiblePicks[Math.floor(Math.random()*3)];
+};
+//end computer random
+
+var playerPickElem = document.getElementById('js-playerPick'),
+    computerPickElem = document.getElementById('js-computerPick'),
+    playerResultElem = document.getElementById('js-playerResult'),
+    computerResultElem = document.getElementById('js-computerResult');
+
