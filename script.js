@@ -1,3 +1,5 @@
+var MAX_POINTS = 5;
+
 //new game button
 var newGameBtn = document.getElementById('js-newGameButton');
 newGameBtn.addEventListener('click', newGame);
@@ -36,6 +38,10 @@ function setGameElements() {
       break;
     case 'ended':
         newGameBtn.innerText = 'Jeszcze raz';
+        playerPickElem.innerText = 'Wybór gracza';
+        computerPickElem.innerText = 'Wybór komputera';
+        playerResultElem.innerText = 'Wynik gracza';
+        computerResultElem.innerText = 'Wynik komputera';
     case 'notStarted':
     default:
         newGameElem.style.display = 'block';
@@ -54,6 +60,7 @@ var playerPointsElem = document.getElementById('js-playerPoints'),
 
 function newGame() {
   player.name = prompt('Graczu, wpisz swoje imię', 'imię gracza');
+  
   if (player.name) {
     player.score = computer.score = 0;
     gameState = 'started';
@@ -78,7 +85,7 @@ function playerPick(playerPick) {
 //computer random
 function getComputerPick() {
     var possiblePicks = ['rock', 'paper', 'scissors'];
-    return possiblePicks[Math.floor(Math.random()*3)];
+    return possiblePicks[Math.floor(Math.random()*possiblePicks.length)];
 };
 //end computer random
 
@@ -101,15 +108,20 @@ function checkRoundWinner(playerPick, computerPick) {
         (computerPick == 'paper' &&  playerPick == 'rock')) {
         
         winnerIs = 'computer';
-    }
+    } 
 
     if (winnerIs == 'player') {
         playerResultElem.innerHTML = "Wygrana!";
-        player.score++;
+        player.score++;        
     } else if (winnerIs == 'computer') {
         computerResultElem.innerHTML = "Wygrana!";
         computer.score++;
+    } else {
+        playerResultElem.innerHTML = computerResultElem.innerHTML = 'Remis!';
     }
+
+    setGamePoints();
+    endGame();
 };
 //end who is a winner
 
@@ -119,3 +131,17 @@ function setGamePoints() {
     computerPointsElem.innerHTML = computer.score;
 };
 //end update score
+
+function endGame() {
+    if (computer.score === MAX_POINTS) {
+        alert('Wygrał komputer!');
+        gameState = 'ended';
+        setGameElements();
+    }
+
+    if (player.score === MAX_POINTS) {
+        alert('Wygrał ' + player.name + '!');
+        gameState = 'ended';
+        setGameElements();
+    }
+}
